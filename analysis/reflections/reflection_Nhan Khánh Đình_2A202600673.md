@@ -1,24 +1,16 @@
-# Báo cáo Phân tích Thất bại (Failure Analysis Report)
+# Reflection - Analysis, QA & Submission
 
-## 1. Tổng quan Benchmark
+# Phần đóng góp cá nhân
 
-- **Tổng số cases:** 50
-- **Tỉ lệ Pass/Fail:** 50/0
-- **Agent baseline:** Agent_V1_Base
-- **Agent candidate:** Agent_V2_Optimized
-- **Release gate:** APPROVE
-- **Điểm RAGAS/custom trung bình:**
-  - Faithfulness: 0.9846
-  - Relevancy: 0.8399
-  - Hit Rate: 0.9600
-  - MRR: 0.9600
-  - Recall@K: 0.9500
-- **Điểm LLM-Judge trung bình:** 4.89 / 5.0
-- **Agreement Rate:** 0.9950
-- **Latency trung bình:** 0.0227 giây
-- **Estimated cost:** 0.000564 USD / 50 cases
+Chạy benchmark end-to-end và kiểm tra bằng check_lab.py.
+Điền analysis/failure_analysis.md bằng số liệu thật.
 
-## 2. Phân nhóm lỗi (Failure Clustering)
+# Kiến thức kỹ thuật
+
+Failure analysis vẫn cần thiết ngay cả khi pass rate 100%, vì retrieval misses có thể thành lỗi production.
+5 Whys giúp phân biệt lỗi do ingestion, retrieval, prompt hay judge.
+
+# Vấn đề đã xử lý
 
 Không có case bị fail theo ngưỡng judge score `< 3`. Tuy nhiên benchmark vẫn ghi nhận 2 điểm cần cải thiện ở tầng retrieval.
 
@@ -59,13 +51,3 @@ Không có case bị fail theo ngưỡng judge score `< 3`. Tuy nhiên benchmark
 4. **Why 3:** Candidate V2 dùng top-k=2 và strict grounding nên trả lời đầy đủ hơn baseline.
 5. **Why 4:** Judge safety/grounding xác nhận có refusal rõ ràng và bám context.
 6. **Root Cause được kiểm soát:** Tối ưu top-k và strict grounding đã giảm lỗi thiếu context trong hard case.
-
-## 4. Kế hoạch cải tiến
-
-- [x] Thay mock evaluator bằng retrieval metrics thật: Hit Rate, MRR, Recall@K.
-- [x] Thay single/mock judge bằng multi-judge consensus offline có conflict resolution.
-- [x] Thêm regression gate dựa trên quality, retrieval, agreement, latency và cost.
-- [x] Sinh reports tự động từ benchmark.
-- [ ] Thêm OOD classifier để CASE_047 không over-retrieve.
-- [ ] Thêm query decomposition/reranking cho các câu multi-hop như CASE_048.
-- [ ] Bổ sung thêm negative cases về chủ đề ngoài phạm vi để calibrate threshold tốt hơn.
