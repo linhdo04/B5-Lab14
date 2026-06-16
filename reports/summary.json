@@ -1,0 +1,151 @@
+{
+  "metadata": {
+    "version": "Agent_V2_Optimized",
+    "total": 50,
+    "timestamp": "2026-06-16 14:19:47",
+    "duration_seconds": 0.1234
+  },
+  "metrics": {
+    "avg_score": 4.89,
+    "median_score": 5.0,
+    "pass_rate": 1.0,
+    "hit_rate": 0.96,
+    "mrr": 0.96,
+    "recall_at_k": 0.95,
+    "faithfulness": 0.9846,
+    "relevancy": 0.8399,
+    "agreement_rate": 0.995,
+    "avg_latency_seconds": 0.0227,
+    "p95_latency_seconds": 0.0246,
+    "total_tokens": 3761,
+    "avg_tokens": 75.22,
+    "estimated_cost_usd": 0.000564,
+    "failed_cases": 0
+  },
+  "breakdown_by_type": {
+    "fact-check": {
+      "total": 15,
+      "fail": 0,
+      "avg_score": 5.0
+    },
+    "procedure": {
+      "total": 15,
+      "fail": 0,
+      "avg_score": 5.0
+    },
+    "constraint": {
+      "total": 15,
+      "fail": 0,
+      "avg_score": 5.0
+    },
+    "prompt-injection": {
+      "total": 1,
+      "fail": 0,
+      "avg_score": 5.0
+    },
+    "out-of-context": {
+      "total": 1,
+      "fail": 0,
+      "avg_score": 3.0
+    },
+    "multi-hop": {
+      "total": 2,
+      "fail": 0,
+      "avg_score": 4.0
+    },
+    "safety-policy": {
+      "total": 1,
+      "fail": 0,
+      "avg_score": 3.5
+    }
+  },
+  "regression": {
+    "baseline": {
+      "metadata": {
+        "version": "Agent_V1_Base",
+        "total": 50,
+        "timestamp": "2026-06-16 14:19:47",
+        "duration_seconds": 0.1221
+      },
+      "metrics": {
+        "avg_score": 4.83,
+        "median_score": 5.0,
+        "pass_rate": 0.96,
+        "hit_rate": 0.96,
+        "mrr": 0.96,
+        "recall_at_k": 0.94,
+        "faithfulness": 0.9854,
+        "relevancy": 0.9362,
+        "agreement_rate": 0.995,
+        "avg_latency_seconds": 0.0228,
+        "p95_latency_seconds": 0.0243,
+        "total_tokens": 2929,
+        "avg_tokens": 58.58,
+        "estimated_cost_usd": 0.000439,
+        "failed_cases": 2
+      },
+      "breakdown_by_type": {
+        "fact-check": {
+          "total": 15,
+          "fail": 0,
+          "avg_score": 5.0
+        },
+        "procedure": {
+          "total": 15,
+          "fail": 0,
+          "avg_score": 5.0
+        },
+        "constraint": {
+          "total": 15,
+          "fail": 0,
+          "avg_score": 5.0
+        },
+        "prompt-injection": {
+          "total": 1,
+          "fail": 0,
+          "avg_score": 5.0
+        },
+        "out-of-context": {
+          "total": 1,
+          "fail": 1,
+          "avg_score": 2.0
+        },
+        "multi-hop": {
+          "total": 2,
+          "fail": 1,
+          "avg_score": 3.0
+        },
+        "safety-policy": {
+          "total": 1,
+          "fail": 0,
+          "avg_score": 3.5
+        }
+      }
+    },
+    "release_gate": {
+      "decision": "APPROVE",
+      "checks": {
+        "quality_floor": true,
+        "retrieval_floor": true,
+        "judge_reliability_floor": true,
+        "latency_floor": true,
+        "non_negative_quality_delta": true,
+        "cost_regression_limit": true
+      },
+      "thresholds": {
+        "min_avg_score": 3.5,
+        "min_hit_rate": 0.78,
+        "min_agreement_rate": 0.65,
+        "max_avg_latency": 0.5,
+        "max_cost_regression_pct": 30.0
+      },
+      "delta": {
+        "avg_score": 0.06,
+        "hit_rate": 0.0,
+        "avg_latency_seconds": -0.0001,
+        "estimated_cost_usd": 0.000125,
+        "cost_regression_pct": 28.47
+      }
+    }
+  }
+}
